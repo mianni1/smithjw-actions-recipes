@@ -9,3 +9,4 @@
 - [x] [Microsoft Company Portal](https://github.com/autopkg/smithjw-recipes/blob/master/Microsoft/Microsoft_Company_Portal.jamf.recipe.yaml)
 - [x] [Microsoft Edge](https://github.com/smithjw/smithjw-actions-recipes/blob/main/Microsoft_Edge/Microsoft_Edge.jamf.recipe.yaml)
 - [x] [Microsoft Teams](https://github.com/autopkg/smithjw-recipes/blob/master/Microsoft/Microsoft_Teams.jamf.recipe.yaml)
+- [x] [Microsoft 365 Copilot](https://github.com/mianni1/smithjw-actions-recipes/blob/main/Microsoft_Copilot/Microsoft_Copilot.jamf.recipe.yaml)
