@@ -1,11 +1,11 @@
 Description: ''
-Identifier: com.github.smithjw-actions.jamf.Microsoft_Copilot
-ParentRecipe: com.github.smithjw-actions.pkg.Microsoft_Copilot
+Identifier: com.github.smithjw-actions.jamf.Microsoft_365_Copilot
+ParentRecipe: com.github.smithjw-actions.pkg.Microsoft_365_Copilot
 MinimumVersion: '2.3'
 
 Input:
-  NAME: Microsoft Copilot
-  SOFTWARE_TITLE: Microsoft_Copilot
+  NAME: Microsoft 365 Copilot
+  SOFTWARE_TITLE: Microsoft_365_Copilot
   CATEGORY: Apps
   POLICY_CATEGORY: Apps
   POLICY_CUSTOM_TRIGGER: install-%SOFTWARE_TITLE%

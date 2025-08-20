@@ -1,12 +1,11 @@
-Description: Downloads the latest Microsoft Copilot installer pkg using the URLDownloaderPython processor.
-Identifier: com.github.smithjw-actions.download.Microsoft_Copilot
+Description: Downloads the latest Microsoft 365 Copilot installer pkg using the URLDownloaderPython processor.
+Identifier: com.github.smithjw-actions.download.Microsoft_365_Copilot
 MinimumVersion: '2.3'
 
 Input:
-  NAME: Microsoft Copilot
-  SOFTWARE_TITLE: Microsoft_Copilot
-  PRODUCT_ID: '2280894'
-  DOWNLOAD_URL: https://go.microsoft.com/fwlink/?linkid=%PRODUCT_ID%
+  NAME: Microsoft 365 Copilot
+  SOFTWARE_TITLE: Microsoft_365_Copilot
+  DOWNLOAD_URL: https://go.microsoft.com/fwlink/?linkid=2325438&clcid=0x409&culture=en-us&country=us
   DOWNLOAD_MISSING_FILE: null
   BYPASS_STOP_PROCESSING_IF_DOWNLOAD_UNCHANGED: null
 
