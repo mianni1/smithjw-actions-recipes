@@ -8,13 +8,23 @@ Input:
   ARCHITECTURE: arm64
   BYPASS_STOP_PROCESSING_IF_DOWNLOAD_UNCHANGED: null
   DOWNLOAD_MISSING_FILE: null
+  INTEL_URL: https://www.tableau.com/downloads/desktop/mac
+  ARM_URL: https://www.tableau.com/downloads/desktop/reg-mac-arm64
 
 Process:
   - Processor: com.github.smithjw-actions.processors/URLDownloaderPython
     Arguments:
       download_missing_file: '%DOWNLOAD_MISSING_FILE%'
       filename: '%SOFTWARE_TITLE%-%ARCHITECTURE%.dmg'
-      url: https://www.tableau.com/downloads/desktop/reg-mac-%ARCHITECTURE%
+      url: '%INTEL_URL%'
+    Condition: ARCHITECTURE == "x86_64" or ARCHITECTURE == "intel"
+
+  - Processor: com.github.smithjw-actions.processors/URLDownloaderPython
+    Arguments:
+      download_missing_file: '%DOWNLOAD_MISSING_FILE%'
+      filename: '%SOFTWARE_TITLE%-%ARCHITECTURE%.dmg'
+      url: '%ARM_URL%'
+    Condition: ARCHITECTURE == "arm64"
 
   - Processor: EndOfCheckPhase
 
