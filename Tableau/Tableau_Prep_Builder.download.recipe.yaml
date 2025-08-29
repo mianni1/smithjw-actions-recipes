@@ -5,6 +5,8 @@ MinimumVersion: '2.3'
 Input:
   NAME: Tableau Prep Builder
   SOFTWARE_TITLE: Tableau_Prep_Builder
+  BYPASS_STOP_PROCESSING_IF_DOWNLOAD_UNCHANGED: null
+  DOWNLOAD_MISSING_FILE: null
 
 Process:
   - Processor: com.github.smithjw-actions.processors/URLDownloaderPython
