@@ -1,0 +1,11 @@
+Description: Downloads the latest version of Claude and creates a package.
+Identifier: com.github.smithjw-actions.pkg.Claude
+ParentRecipe: com.github.smithjw-actions.download.Claude
+MinimumVersion: '2.3'
+
+Input:
+  NAME: Claude
+  SOFTWARE_TITLE: Claude
+
+Process:
+  - Processor: AppPkgCreator

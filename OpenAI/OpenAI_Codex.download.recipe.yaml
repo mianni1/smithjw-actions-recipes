@@ -1,0 +1,68 @@
+Description: Downloads the latest version of OpenAI Codex CLI.
+Identifier: com.github.smithjw-actions.download.OpenAI_Codex
+MinimumVersion: '2.3'
+
+Input:
+  NAME: OpenAI Codex
+  SOFTWARE_TITLE: OpenAI_Codex
+  DOWNLOAD_MISSING_FILE: null
+  BYPASS_STOP_PROCESSING_IF_DOWNLOAD_UNCHANGED: 'False'
+
+Process:
+  - Processor: GitHubReleasesInfoProvider
+    Arguments:
+      asset_regex: ^codex-aarch64-apple-darwin\.tar\.gz$
+      github_repo: openai/codex
+
+  - Processor: URLTextSearcher
+    Arguments:
+      re_pattern: rust-v(?P<version>\d+\.\d+\.\d+)
+      url: https://api.github.com/repos/openai/codex/releases/latest
+
+  - Processor: com.github.smithjw-actions.processors/URLDownloaderPython
+    Arguments:
+      download_missing_file: '%DOWNLOAD_MISSING_FILE%'
+      filename: codex-arm64-%version%
+      url: https://github.com/openai/codex/releases/download/rust-v%version%/codex-aarch64-apple-darwin.tar.gz
+      User_Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+
+  - Processor: com.github.smithjw-actions.processors/URLDownloaderPython
+    Arguments:
+      download_missing_file: '%DOWNLOAD_MISSING_FILE%'
+      filename: codex-x86_64-%version%
+      url: https://github.com/openai/codex/releases/download/rust-v%version%/codex-x86_64-apple-darwin.tar.gz
+      User_Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+
+  - Processor: EndOfCheckPhase
+
+  - Processor: com.github.jgstew.SharedProcessors/StopProcessingIfDownloadUnchanged
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: '%RECIPE_CACHE_DIR%/downloads/codex-arm64-%version%'
+      destination_path: '%RECIPE_CACHE_DIR%/unpack-arm64'
+      purge_destination: true
+
+  - Processor: Unarchiver
+    Arguments:
+      archive_path: '%RECIPE_CACHE_DIR%/downloads/codex-x86_64-%version%'
+      destination_path: '%RECIPE_CACHE_DIR%/unpack-x86_64'
+      purge_destination: true
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: '%RECIPE_CACHE_DIR%/unpack-arm64/codex'
+      requirement: |
+        identifier "com.openai.codex" and anchor apple generic and
+        certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and
+        certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and
+        certificate leaf[subject.OU] = 2DC432GLL2
+
+  - Processor: CodeSignatureVerifier
+    Arguments:
+      input_path: '%RECIPE_CACHE_DIR%/unpack-x86_64/codex'
+      requirement: |
+        identifier "com.openai.codex" and anchor apple generic and
+        certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and
+        certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and
+        certificate leaf[subject.OU] = 2DC432GLL2
