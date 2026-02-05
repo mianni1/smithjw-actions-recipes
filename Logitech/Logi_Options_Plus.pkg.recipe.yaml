@@ -43,7 +43,7 @@ Process:
           --analytics 'No' \
           --flow 'No' \
           --sso 'No' \
-          --update 'Yes'
+          --update 'no'
 
         exitcode=$?
         exit "${exitcode}"
