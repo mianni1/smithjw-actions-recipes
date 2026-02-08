@@ -43,7 +43,7 @@ Process:
           --analytics 'No' \
           --flow 'No' \
           --sso 'No' \
-          --update 'no'
+          --update 'no' \
           --aipromptbuilder no \
           --device-recommendation no \
           --smartactions no \
