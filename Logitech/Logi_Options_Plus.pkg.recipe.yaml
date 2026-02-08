@@ -44,6 +44,10 @@ Process:
           --flow 'No' \
           --sso 'No' \
           --update 'no'
+          --aipromptbuilder no \
+          --device-recommendation no \
+          --smartactions no \
+          --actions-ring no
 
         exitcode=$?
         exit "${exitcode}"
